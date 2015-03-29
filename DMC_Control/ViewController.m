@@ -9,17 +9,24 @@
 //redirectUri=http://localhost
 
 #import "ViewController.h"
+#include <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVAudioPlayer.h>
 
 #define RelayrAppID         @"f920844d-92d8-491c-9e7e-6893cf738c9f"
 #define RelayrAppSecret     @"bMa3K6w8o81pMlIfotN2gJLBYzrjVE1P"
 #define RelayrRedirectURI   @"http://localhost"
 
+
+
 @interface ViewController ()
 
+@property (nonatomic, strong) AVAudioPlayer *sound;
 
 @property (nonatomic,strong) RelayrApp *relayerApp;
 @property (nonatomic,strong) RelayrUser *user;
 @property (nonatomic,strong) UIFont *ledFont;
+@property (assign)BOOL isAlarmActive;
+@property (nonatomic,strong) NSNumber *lastGreading;
 
 //@property (nonatomic,strong) NSNumber *fluxCapaciterTemp;
 
@@ -35,13 +42,26 @@
     [RelayrCloud isReachable:^(NSError* error, NSNumber* isReachable){
         if (isReachable.boolValue) {
             NSLog(@"The Relayr Cloud is reachable!");
-            [self connectToRelayr];
+           // [self connectToRelayr];
         }
     }];
     
     NSLog(@"%@",[UIFont familyNames]);
-    
-    self.ledFont = [UIFont fontWithName:@"Digital-7" size:32.0];
+    [self resetProperties];
+}
+
+-(void)resetProperties
+{
+    self.xGforce = @0;
+    self.yGforce = @0;
+    self.zGforce = @0;
+    self.xGforceMax = @0;
+    self.yGforceMax = @0;
+    self.zGforceMax = @0;
+    self.maxGforce = @0;
+    self.xSpeed = @0;
+    self.ySpeed = @0;
+    self.zSpeed = @0;
 }
 
 -(void)connectToRelayr
@@ -101,7 +121,7 @@
 
 - (void)dataReceivedFrom:(RelayrReading*)reading
 {
- //   NSLog(@"Value received: %@", reading.value);
+   // NSLog(@"Value received: %@", reading.value);
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc]init];
     [numberFormatter setPositiveFormat:@"###0.##"];
@@ -116,17 +136,51 @@
     if ([reading.meaning isEqualToString:@"acceleration"])
     {
         [self loadAccelerationDatafromReading:reading];
-        self.xGeeLabel.font = self.ledFont;
-        self.xGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:self.xGforce]];
-        self.yGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:self.yGforce]];
-        self.zGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:self.zGforce]];
+        self.xGeeLabel.text = [NSString stringWithFormat:@"%@",[numberFormatter stringFromNumber:self.xGforce]];
+        self.yGeeLabel.text = [NSString stringWithFormat:@"%@",[numberFormatter stringFromNumber:self.yGforce]];
+        self.zGeeLabel.text = [NSString stringWithFormat:@"%@",[numberFormatter stringFromNumber:self.zGforce]];
+        self.maxGlabel.text = [NSString stringWithFormat:@"%@",[numberFormatter stringFromNumber:self.maxGforce]];
+        
+        float value = [self.xGforce floatValue] + [self.yGforce floatValue] + [self.zGforce floatValue];
+        
+     //   NSLog(@"combined G %f",value);
+
+        float change = [self.lastGreading floatValue] - value;
+        
+        self.lastGreading = [NSNumber numberWithFloat:value];
+        
+      //  NSLog(@"change: %f",change);
+        
+        [self checkAlarmForChange:change];
+    }
+    
+    if ([reading.meaning isEqualToString:@"angularSpeed"])
+    {
+ 
+        [self loadAngularDataFromReading:reading];
+        self.xSpeedLabel.text = [NSString stringWithFormat:@"%@",[numberFormatter stringFromNumber:self.xSpeed]];
+        self.ySpeedLabel.text = [NSString stringWithFormat:@"%@",[numberFormatter stringFromNumber:self.ySpeed]];
+        self.zSpeedLabel.text = [NSString stringWithFormat:@"%@",[numberFormatter stringFromNumber:self.zSpeed]];
+//        self.maxGlabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:self.maxGforce]];
     }
     
     if ([reading.meaning isEqualToString:@"proximity"])
     {
-        NSLog(@"prox: %@",reading.value);
+       // NSLog(@"prox: %@",reading.value);
         
         self.acceleratorLabel.text = [NSString stringWithFormat:@"%@",reading.value];
+    }
+}
+
+-(void)checkAlarmForChange:(float)change
+{
+    if (change > .05)
+    {
+        NSLog(@"alarm");
+        if (self.isAlarmActive)
+        {
+            [self playAlarm];
+        }
     }
 }
 
@@ -191,11 +245,72 @@
     }
 }
 
+-(void)loadAngularDataFromReading:(RelayrReading *)reading
+{
+    NSArray *speedValues = reading.value;
+    
+    //   NSLog (@"G's %@",gValues);
+    
+    //arrays can't contain primitive types so we need to get it out of the array as a string and then convert it back to a double
+    NSString *xString = [NSString stringWithFormat:@"%@",[speedValues objectAtIndex:0]];
+    self.xSpeed = [NSNumber numberWithDouble:[xString doubleValue]];
+    
+    NSString *yString = [NSString stringWithFormat:@"%@",[speedValues objectAtIndex:1]];
+    self.ySpeed = [NSNumber numberWithDouble:[yString doubleValue]];
+    
+    NSString *zString = [NSString stringWithFormat:@"%@",[speedValues objectAtIndex:2]];
+    self.zSpeed = [NSNumber numberWithDouble:[zString doubleValue]];
+
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)alarmButtonAction:(id)sender
+{
+    if (self.isAlarmActive)
+    {
+        [self playDisengageSound];
+        self.isAlarmActive = NO;
+        self.buttonBackgroundView.alpha = .2;
+    }
+    else
+    {
+        [self playDisengageSound];
+        self.isAlarmActive = YES;
+        self.buttonBackgroundView.alpha = 1;
+
+    }
+}
+
+- (IBAction)resetButton:(id)sender
+{
+    _relayerApp = nil;
+    _user = nil;
+    [self resetProperties];
+    [self connectToRelayr];
+    self.relayerBackgroundView.alpha = 1;
+}
+
+-(void)playDisengageSound
+{
+    NSString *pathsoundFile = [[NSBundle mainBundle] pathForResource:@"engage" ofType:@"m4a"];
+    self.sound = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:pathsoundFile] error:NULL];
+    self.sound.delegate = self;
+    self.sound.volume = 1;
+    [self.sound play];
+}
+
+-(void)playAlarm
+{
+    NSString *pathsoundFile = [[NSBundle mainBundle] pathForResource:@"alarm" ofType:@"mp3"];
+    self.sound = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:pathsoundFile] error:NULL];
+    self.sound.delegate = self;
+    self.sound.volume = 1;
+    [self.sound play];
 }
 
 @end

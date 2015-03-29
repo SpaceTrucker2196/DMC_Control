@@ -8,13 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import <Relayr/Relayr.h>
-@interface ViewController : UIViewController
+#import <AVFoundation/AVFoundation.h>
+@interface ViewController : UIViewController <AVAudioPlayerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *fluxCapacitorTempLabel;
 @property (weak, nonatomic) IBOutlet UILabel *xGeeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yGeeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *zGeeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *acceleratorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maxGlabel;
+@property (weak, nonatomic) IBOutlet UILabel *xSpeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ySpeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *zSpeedLabel;
+@property (weak, nonatomic) IBOutlet UIView *buttonBackgroundView;
+@property (weak, nonatomic) IBOutlet UIView *relayerBackgroundView;
 
 ///The last read flux capacitor temp. Use [fluxCapacitor floadValue] for float or other NSNumber methods for primative types
 @property (strong, nonatomic) NSNumber *fluxCapacitorTemp;
@@ -33,5 +40,15 @@
 ///The max acceleration in G's for any axis. Use [maxGforce floadValue] for float or other NSNumber methods for primative types
 @property (strong, nonatomic) NSNumber *maxGforce;
 
+@property (strong, nonatomic) NSNumber *xSpeed;
+@property (strong, nonatomic) NSNumber *ySpeed;
+@property (strong, nonatomic) NSNumber *zSpeed;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *alarmButton;
+
+- (IBAction)alarmButtonAction:(id)sender;
+- (IBAction)resetButton:(id)sender;
+  
 @end
 

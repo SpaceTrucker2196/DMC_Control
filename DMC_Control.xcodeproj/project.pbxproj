@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE9B699A1AC86F5C00482D83 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9B69991AC86F5C00482D83 /* AudioToolbox.framework */; };
+		EE9B699C1AC86FBC00482D83 /* disengage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EE9B699B1AC86FBC00482D83 /* disengage.mp3 */; };
+		EE9B699E1AC8721900482D83 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9B699D1AC8721900482D83 /* AVFoundation.framework */; };
+		EE9B69A31AC873F500482D83 /* engage.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EE9B69A21AC873F500482D83 /* engage.m4a */; };
+		EE9B69A51AC8776F00482D83 /* alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EE9B69A41AC8776F00482D83 /* alarm.mp3 */; };
 		EED1F0A01AC776CA00B3AC33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EED1F09F1AC776CA00B3AC33 /* main.m */; };
 		EED1F0A31AC776CA00B3AC33 /* DMCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EED1F0A21AC776CA00B3AC33 /* DMCAppDelegate.m */; };
 		EED1F0A61AC776CA00B3AC33 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EED1F0A51AC776CA00B3AC33 /* ViewController.m */; };
@@ -49,6 +54,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EE9B69991AC86F5C00482D83 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EE9B699B1AC86FBC00482D83 /* disengage.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = disengage.mp3; sourceTree = "<group>"; };
+		EE9B699D1AC8721900482D83 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EE9B69A21AC873F500482D83 /* engage.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = engage.m4a; sourceTree = "<group>"; };
+		EE9B69A41AC8776F00482D83 /* alarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm.mp3; sourceTree = "<group>"; };
 		EED1F09A1AC776CA00B3AC33 /* DMC_Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMC_Control.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED1F09E1AC776CA00B3AC33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EED1F09F1AC776CA00B3AC33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -76,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE9B699E1AC8721900482D83 /* AVFoundation.framework in Frameworks */,
+				EE9B699A1AC86F5C00482D83 /* AudioToolbox.framework in Frameworks */,
 				EED1F0D01AC77A6A00B3AC33 /* Relayr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +105,8 @@
 		EED1F0911AC776CA00B3AC33 = {
 			isa = PBXGroup;
 			children = (
+				EE9B699D1AC8721900482D83 /* AVFoundation.framework */,
+				EE9B69991AC86F5C00482D83 /* AudioToolbox.framework */,
 				EED1F09C1AC776CA00B3AC33 /* DMC_Control */,
 				EED1F0B61AC776CA00B3AC33 /* DMC_ControlTests */,
 				EED1F09B1AC776CA00B3AC33 /* Products */,
@@ -116,9 +130,12 @@
 				EED1F0A21AC776CA00B3AC33 /* DMCAppDelegate.m */,
 				EED1F0A41AC776CA00B3AC33 /* ViewController.h */,
 				EED1F0A51AC776CA00B3AC33 /* ViewController.m */,
+				EE9B69A41AC8776F00482D83 /* alarm.mp3 */,
+				EE9B69A21AC873F500482D83 /* engage.m4a */,
 				EED1F0A71AC776CA00B3AC33 /* Main.storyboard */,
 				EED1F0AA1AC776CA00B3AC33 /* Images.xcassets */,
 				EED1F0AC1AC776CA00B3AC33 /* LaunchScreen.xib */,
+				EE9B699B1AC86FBC00482D83 /* disengage.mp3 */,
 				EED1F0DD1AC8447700B3AC33 /* fzm-Embossed.Text.ttf */,
 				EED1F0DB1AC8440D00B3AC33 /* fzm-Embossed.Label.ttf */,
 				EED1F0D31AC8422500B3AC33 /* digital-7 (mono).ttf */,
@@ -239,10 +256,13 @@
 			files = (
 				EED1F0DE1AC845DE00B3AC33 /* fzm-Embossed.Text.ttf in Resources */,
 				EED1F0D71AC8422500B3AC33 /* digital-7 (mono).ttf in Resources */,
+				EE9B699C1AC86FBC00482D83 /* disengage.mp3 in Resources */,
 				EED1F0D91AC8422500B3AC33 /* digital-7 (italic).ttf in Resources */,
 				EED1F0A91AC776CA00B3AC33 /* Main.storyboard in Resources */,
 				EED1F0AE1AC776CA00B3AC33 /* LaunchScreen.xib in Resources */,
 				EED1F0DC1AC8440D00B3AC33 /* fzm-Embossed.Label.ttf in Resources */,
+				EE9B69A31AC873F500482D83 /* engage.m4a in Resources */,
+				EE9B69A51AC8776F00482D83 /* alarm.mp3 in Resources */,
 				EED1F0AB1AC776CA00B3AC33 /* Images.xcassets in Resources */,
 				EED1F0DA1AC8422500B3AC33 /* digital-7 (mono italic).ttf in Resources */,
 				EED1F0D81AC8422500B3AC33 /* digital-7.ttf in Resources */,
@@ -472,6 +492,7 @@
 				EED1F0BF1AC776CA00B3AC33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EED1F0C01AC776CA00B3AC33 /* Build configuration list for PBXNativeTarget "DMC_ControlTests" */ = {
 			isa = XCConfigurationList;
@@ -480,6 +501,7 @@
 				EED1F0C21AC776CA00B3AC33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

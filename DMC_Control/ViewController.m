@@ -20,7 +20,7 @@
 @property (nonatomic,strong) RelayrApp *relayerApp;
 @property (nonatomic,strong) RelayrUser *user;
 
-@property (nonatomic,strong) NSNumber *fluxCapaciterTemp;
+//@property (nonatomic,strong) NSNumber *fluxCapaciterTemp;
 
 
 @end
@@ -96,9 +96,38 @@
 
 - (void)dataReceivedFrom:(RelayrReading*)reading
 {
-    NSLog(@"Value received: %@", reading.value);
+ //   NSLog(@"Value received: %@", reading.value);
+    
+    if ([reading.meaning isEqualToString:@"temperature"])
+    {
+        self.fluxCapacitorTempLabel.text = [NSString stringWithFormat:@"%@",reading.value];
+    }
+    
+    if ([reading.meaning isEqualToString:@"acceleration"])
+    {
+        NSArray *gValues = reading.value;
+        
+        NSLog (@"G's %@",gValues);
+        
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc]init];
+        [numberFormatter setPositiveFormat:@"###0.##"];
+        [numberFormatter setNegativeFormat:@"-###0.##"];
+        
+        //arrays can't contain primitive types so we need to get it out of the array as a string and then convert it back to a double
+        NSString *xGeeString = [NSString stringWithFormat:@"%@",[gValues objectAtIndex:0]];
+        NSNumber *xGee = [NSNumber numberWithDouble:[xGeeString doubleValue]];
+        
+        NSString *yGeeString = [NSString stringWithFormat:@"%@",[gValues objectAtIndex:1]];
+        NSNumber *yGee = [NSNumber numberWithDouble:[yGeeString doubleValue]];
+        
+        NSString *zGeeString = [NSString stringWithFormat:@"%@",[gValues objectAtIndex:2]];
+        NSNumber *zGee = [NSNumber numberWithDouble:[zGeeString doubleValue]];
+        
+        self.xGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:xGee]];
+        self.yGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:yGee]];
+        self.zGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:zGee]];
+    }
 }
-
 
 
 - (void)didReceiveMemoryWarning

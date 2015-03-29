@@ -10,7 +10,10 @@
 #import <Relayr/Relayr.h>
 @interface ViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *fluxCapacitorTemp;
+@property (weak, nonatomic) IBOutlet UILabel *fluxCapacitorTempLabel;
+@property (weak, nonatomic) IBOutlet UILabel *xGeeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yGeeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *zGeeLabel;
 
 @end
 

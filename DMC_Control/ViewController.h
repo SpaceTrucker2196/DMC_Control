@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <Relayr/Relayr.h>
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *fluxCapacitorTemp;
 
 @end
 

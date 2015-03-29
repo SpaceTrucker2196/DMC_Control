@@ -27,7 +27,7 @@ Latest reading for Driver Accelleration Pressure.
 <b>Time Stream Angularity</b>
 Measures changes in Time Stream Angularity.
 
-<b>Alarm</a>
+<b>Alarm</b>
 Arm/Dissarm the motion alarm.
 
 <b>Relayr</b>

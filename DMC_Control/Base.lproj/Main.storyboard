@@ -73,15 +73,41 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accelerator Position" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSb-L0-R9z">
+                                <rect key="frame" x="379" y="256" width="205" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="0vb-Vw-FqE"/>
+                                    <constraint firstAttribute="width" constant="205" id="ltR-7e-dBt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="RMd-f9-c6T">
+                                <rect key="frame" x="315" y="263" width="269" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="269" id="2SE-uB-5Qr"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="269" id="8Kh-R2-XNK"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="83" id="lI4-ir-RtT"/>
+                                    <constraint firstAttribute="height" constant="83" id="ucp-1n-8SE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="59"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RMd-f9-c6T" firstAttribute="top" secondItem="PKM-Jh-3ye" secondAttribute="bottom" constant="8" id="0oj-kJ-Asz"/>
                             <constraint firstItem="PKM-Jh-3ye" firstAttribute="top" secondItem="Jnp-fY-QmQ" secondAttribute="bottom" constant="48" id="28J-3y-mRi"/>
                             <constraint firstItem="0hE-Aj-53z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="6sH-u1-yIv"/>
                             <constraint firstItem="Jnp-fY-QmQ" firstAttribute="top" secondItem="QWh-fP-nhE" secondAttribute="bottom" id="7hf-ph-yyy"/>
                             <constraint firstItem="PKM-Jh-3ye" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="9LS-JS-Spf"/>
                             <constraint firstItem="QWh-fP-nhE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="A6R-cu-Ctj"/>
+                            <constraint firstItem="VSb-L0-R9z" firstAttribute="top" secondItem="PKM-Jh-3ye" secondAttribute="bottom" constant="1" id="CZB-fx-ynM"/>
+                            <constraint firstItem="RMd-f9-c6T" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="aTH-4h-gbH"/>
                             <constraint firstItem="Jnp-fY-QmQ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="hxb-q7-IfK"/>
+                            <constraint firstItem="VSb-L0-R9z" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="iOI-ky-UEK"/>
                             <constraint firstItem="Zy9-mF-k4S" firstAttribute="top" secondItem="QWh-fP-nhE" secondAttribute="bottom" constant="64" id="nOR-K4-nCe"/>
                             <constraint firstItem="Zy9-mF-k4S" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="sFm-va-RaQ"/>
                             <constraint firstItem="QWh-fP-nhE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="uZY-fZ-sx2"/>
@@ -89,6 +115,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="acceleratorLabel" destination="RMd-f9-c6T" id="vjr-L4-XrX"/>
                         <outlet property="fluxCapacitorTempLabel" destination="JxQ-ao-dDR" id="8qq-7e-XjH"/>
                         <outlet property="xGeeLabel" destination="Jnp-fY-QmQ" id="rYt-hx-q9Z"/>
                         <outlet property="yGeeLabel" destination="Zy9-mF-k4S" id="EfP-xm-AJm"/>

@@ -30,15 +30,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
+ 
     [RelayrCloud isReachable:^(NSError* error, NSNumber* isReachable){
         if (isReachable.boolValue) {
             NSLog(@"The Relayr Cloud is reachable!");
+            [self connectToRelayr];
         }
     }];
-    
-    
+}
+
+-(void)connectToRelayr
+{
     [RelayrApp appWithID:RelayrAppID OAuthClientSecret:RelayrAppSecret redirectURI:RelayrRedirectURI completion:^(NSError* error, RelayrApp* app){
         if (app)
         {
@@ -49,16 +51,14 @@
                     NSLog(@"User logged with name: %@ and email: %@", user.name, user.email);
                     _user = user;
                     
-                    [self relayerTransmitters];
+                    [self setupTransmittersAndDevices];
                 }
             }];
         }
     }];
-   
 }
 
-
--(void)relayerTransmitters
+-(void)setupTransmittersAndDevices
 {
   //   Lets ask the platform for all the transmitters/devices own by this specific user.
     [self.user queryCloudForIoTs:^(NSError* error){
@@ -67,6 +67,8 @@
         for (RelayrTransmitter* transmitter in self.user.transmitters)
         {
             NSLog(@"Transmitter's name: %@", transmitter.name);
+            
+            
         }
         
         RelayrTransmitter* transmitter = self.user.transmitters.anyObject;
@@ -90,42 +92,96 @@
             }
         }
     }];
-//
-    
 }
 
 - (void)dataReceivedFrom:(RelayrReading*)reading
 {
  //   NSLog(@"Value received: %@", reading.value);
     
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc]init];
+    [numberFormatter setPositiveFormat:@"###0.##"];
+    [numberFormatter setNegativeFormat:@"-###0.##"];
+    
     if ([reading.meaning isEqualToString:@"temperature"])
     {
-        self.fluxCapacitorTempLabel.text = [NSString stringWithFormat:@"%@",reading.value];
+        [self loadFluxCapacitorfrom:reading];
+        self.fluxCapacitorTempLabel.text = [numberFormatter stringFromNumber:self.fluxCapacitorTemp];
     }
     
     if ([reading.meaning isEqualToString:@"acceleration"])
     {
-        NSArray *gValues = reading.value;
+        [self loadAccelerationDatafromReading:reading];
+        self.xGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:self.xGforce]];
+        self.yGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:self.yGforce]];
+        self.zGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:self.zGforce]];
+    }
+    
+    if ([reading.meaning isEqualToString:@"proximity"])
+    {
+        NSLog(@"prox: %@",reading.value);
         
-        NSLog (@"G's %@",gValues);
-        
-        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc]init];
-        [numberFormatter setPositiveFormat:@"###0.##"];
-        [numberFormatter setNegativeFormat:@"-###0.##"];
-        
-        //arrays can't contain primitive types so we need to get it out of the array as a string and then convert it back to a double
-        NSString *xGeeString = [NSString stringWithFormat:@"%@",[gValues objectAtIndex:0]];
-        NSNumber *xGee = [NSNumber numberWithDouble:[xGeeString doubleValue]];
-        
-        NSString *yGeeString = [NSString stringWithFormat:@"%@",[gValues objectAtIndex:1]];
-        NSNumber *yGee = [NSNumber numberWithDouble:[yGeeString doubleValue]];
-        
-        NSString *zGeeString = [NSString stringWithFormat:@"%@",[gValues objectAtIndex:2]];
-        NSNumber *zGee = [NSNumber numberWithDouble:[zGeeString doubleValue]];
-        
-        self.xGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:xGee]];
-        self.yGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:yGee]];
-        self.zGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:zGee]];
+        self.acceleratorLabel.text = [NSString stringWithFormat:@"%@",reading.value];
+    }
+}
+
+-(void)loadFluxCapacitorfrom:(RelayrReading *)reading
+{
+    NSString *tempString = [NSString stringWithFormat:@"%@",reading.value];
+    self.fluxCapacitorTemp = [NSNumber numberWithDouble:[tempString doubleValue]];
+}
+
+-(void)loadAccelerationDatafromReading:(RelayrReading *)reading
+{
+    NSArray *gValues = reading.value;
+    
+    //   NSLog (@"G's %@",gValues);
+
+    //arrays can't contain primitive types so we need to get it out of the array as a string and then convert it back to a double
+    NSString *xGeeString = [NSString stringWithFormat:@"%@",[gValues objectAtIndex:0]];
+    self.xGforce = [NSNumber numberWithDouble:[xGeeString doubleValue]];
+    
+    NSString *yGeeString = [NSString stringWithFormat:@"%@",[gValues objectAtIndex:1]];
+    self.yGforce = [NSNumber numberWithDouble:[yGeeString doubleValue]];
+    
+    NSString *zGeeString = [NSString stringWithFormat:@"%@",[gValues objectAtIndex:2]];
+    self.zGforce = [NSNumber numberWithDouble:[zGeeString doubleValue]];
+    
+    NSComparisonResult xResult = [self.xGforce compare:self.xGforceMax];
+    NSComparisonResult yResult = [self.yGforce compare:self.yGforceMax];
+    NSComparisonResult zResult = [self.zGforce compare:self.zGforceMax];
+    
+    NSComparisonResult xMaxResult = [self.xGforce compare:self.maxGforce];
+    NSComparisonResult yMaxResult = [self.yGforce compare:self.maxGforce];
+    NSComparisonResult zMaxResult = [self.zGforce compare:self.maxGforce];
+    
+    //max
+    if (xResult == NSOrderedDescending)
+    {
+        self.xGforceMax = self.xGforce;
+    }
+    
+    if (yResult == NSOrderedDescending)
+    {
+        self.yGforceMax = self.yGforce;
+    }
+    if (zResult == NSOrderedDescending)
+    {
+        self.zGforceMax = self.zGforce;
+    }
+    
+    //Set all time max
+    if (xMaxResult == NSOrderedDescending)
+    {
+        self.maxGforce = self.xGforce;
+    }
+    
+    if (yMaxResult == NSOrderedDescending)
+    {
+        self.maxGforce = self.yGforce;
+    }
+    if (zMaxResult == NSOrderedDescending)
+    {
+        self.maxGforce = self.zGforce;
     }
 }
 

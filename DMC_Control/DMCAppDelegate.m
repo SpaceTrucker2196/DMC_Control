@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 HardwareWeekend. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "DMCAppDelegate.h"
 
-@interface AppDelegate ()
+@interface DMCAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation DMCAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

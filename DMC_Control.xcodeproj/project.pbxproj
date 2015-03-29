@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EED1F0A01AC776CA00B3AC33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EED1F09F1AC776CA00B3AC33 /* main.m */; };
-		EED1F0A31AC776CA00B3AC33 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EED1F0A21AC776CA00B3AC33 /* AppDelegate.m */; };
+		EED1F0A31AC776CA00B3AC33 /* DMCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EED1F0A21AC776CA00B3AC33 /* DMCAppDelegate.m */; };
 		EED1F0A61AC776CA00B3AC33 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EED1F0A51AC776CA00B3AC33 /* ViewController.m */; };
 		EED1F0A91AC776CA00B3AC33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED1F0A71AC776CA00B3AC33 /* Main.storyboard */; };
 		EED1F0AB1AC776CA00B3AC33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EED1F0AA1AC776CA00B3AC33 /* Images.xcassets */; };
@@ -46,8 +46,8 @@
 		EED1F09A1AC776CA00B3AC33 /* DMC_Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMC_Control.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED1F09E1AC776CA00B3AC33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EED1F09F1AC776CA00B3AC33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EED1F0A11AC776CA00B3AC33 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		EED1F0A21AC776CA00B3AC33 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EED1F0A11AC776CA00B3AC33 /* DMCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMCAppDelegate.h; sourceTree = "<group>"; };
+		EED1F0A21AC776CA00B3AC33 /* DMCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMCAppDelegate.m; sourceTree = "<group>"; };
 		EED1F0A41AC776CA00B3AC33 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		EED1F0A51AC776CA00B3AC33 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EED1F0A81AC776CA00B3AC33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				EED1F0CE1AC77A5D00B3AC33 /* Relayr.framework */,
-				EED1F0A11AC776CA00B3AC33 /* AppDelegate.h */,
-				EED1F0A21AC776CA00B3AC33 /* AppDelegate.m */,
+				EED1F0A11AC776CA00B3AC33 /* DMCAppDelegate.h */,
+				EED1F0A21AC776CA00B3AC33 /* DMCAppDelegate.m */,
 				EED1F0A41AC776CA00B3AC33 /* ViewController.h */,
 				EED1F0A51AC776CA00B3AC33 /* ViewController.m */,
 				EED1F0A71AC776CA00B3AC33 /* Main.storyboard */,
@@ -240,7 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EED1F0A61AC776CA00B3AC33 /* ViewController.m in Sources */,
-				EED1F0A31AC776CA00B3AC33 /* AppDelegate.m in Sources */,
+				EED1F0A31AC776CA00B3AC33 /* DMCAppDelegate.m in Sources */,
 				EED1F0A01AC776CA00B3AC33 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

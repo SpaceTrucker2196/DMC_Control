@@ -7,4 +7,4 @@ All the app code here was written during a hackathon and slapped in a single vie
 
 The dashboard:
 
-
+<img src=https://raw.githubusercontent.com/spacecoder/DMC_Control/master/graphics/screen.jpg>

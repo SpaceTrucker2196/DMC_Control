@@ -8,3 +8,29 @@ All the app code here was written during a hackathon and slapped in a single vie
 The dashboard:
 
 <img src=https://raw.githubusercontent.com/spacecoder/DMC_Control/master/graphics/screen.jpg>
+
+
+Functions:
+
+<b>Flux</b>
+This is the last read flux capacitor tempature reading.
+
+<b>G Forces</b>
+The last read readings for gravitational forces in 3 dimensional space. 
+
+<b>Max G</b>
+The highest gravitational force read in any dimension.
+
+<B>Accel</b>
+Latest reading for Driver Accelleration Pressure.
+
+<b>Time Stream Angularity</b>
+Measures changes in Time Stream Angularity.
+
+<b>Alarm</a>
+Arm/Dissarm the motion alarm.
+
+<b>Relayr</b>
+Start / Reset connection to Relayr cloud.
+
+

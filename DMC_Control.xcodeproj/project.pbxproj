@@ -16,6 +16,12 @@
 		EED1F0BA1AC776CA00B3AC33 /* DMC_ControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EED1F0B91AC776CA00B3AC33 /* DMC_ControlTests.m */; };
 		EED1F0D01AC77A6A00B3AC33 /* Relayr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED1F0CE1AC77A5D00B3AC33 /* Relayr.framework */; };
 		EED1F0D11AC77A6A00B3AC33 /* Relayr.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EED1F0CE1AC77A5D00B3AC33 /* Relayr.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EED1F0D71AC8422500B3AC33 /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = EED1F0D31AC8422500B3AC33 /* digital-7 (mono).ttf */; };
+		EED1F0D81AC8422500B3AC33 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EED1F0D41AC8422500B3AC33 /* digital-7.ttf */; };
+		EED1F0D91AC8422500B3AC33 /* digital-7 (italic).ttf in Resources */ = {isa = PBXBuildFile; fileRef = EED1F0D51AC8422500B3AC33 /* digital-7 (italic).ttf */; };
+		EED1F0DA1AC8422500B3AC33 /* digital-7 (mono italic).ttf in Resources */ = {isa = PBXBuildFile; fileRef = EED1F0D61AC8422500B3AC33 /* digital-7 (mono italic).ttf */; };
+		EED1F0DC1AC8440D00B3AC33 /* fzm-Embossed.Label.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EED1F0DB1AC8440D00B3AC33 /* fzm-Embossed.Label.ttf */; };
+		EED1F0DE1AC845DE00B3AC33 /* fzm-Embossed.Text.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EED1F0DD1AC8447700B3AC33 /* fzm-Embossed.Text.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,12 @@
 		EED1F0B81AC776CA00B3AC33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EED1F0B91AC776CA00B3AC33 /* DMC_ControlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMC_ControlTests.m; sourceTree = "<group>"; };
 		EED1F0CE1AC77A5D00B3AC33 /* Relayr.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Relayr.framework; sourceTree = "<group>"; };
+		EED1F0D31AC8422500B3AC33 /* digital-7 (mono).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (mono).ttf"; sourceTree = "<group>"; };
+		EED1F0D41AC8422500B3AC33 /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7.ttf"; sourceTree = "<group>"; };
+		EED1F0D51AC8422500B3AC33 /* digital-7 (italic).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (italic).ttf"; sourceTree = "<group>"; };
+		EED1F0D61AC8422500B3AC33 /* digital-7 (mono italic).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (mono italic).ttf"; sourceTree = "<group>"; };
+		EED1F0DB1AC8440D00B3AC33 /* fzm-Embossed.Label.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fzm-Embossed.Label.ttf"; sourceTree = "<group>"; };
+		EED1F0DD1AC8447700B3AC33 /* fzm-Embossed.Text.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fzm-Embossed.Text.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +119,12 @@
 				EED1F0A71AC776CA00B3AC33 /* Main.storyboard */,
 				EED1F0AA1AC776CA00B3AC33 /* Images.xcassets */,
 				EED1F0AC1AC776CA00B3AC33 /* LaunchScreen.xib */,
+				EED1F0DD1AC8447700B3AC33 /* fzm-Embossed.Text.ttf */,
+				EED1F0DB1AC8440D00B3AC33 /* fzm-Embossed.Label.ttf */,
+				EED1F0D31AC8422500B3AC33 /* digital-7 (mono).ttf */,
+				EED1F0D41AC8422500B3AC33 /* digital-7.ttf */,
+				EED1F0D51AC8422500B3AC33 /* digital-7 (italic).ttf */,
+				EED1F0D61AC8422500B3AC33 /* digital-7 (mono italic).ttf */,
 				EED1F09D1AC776CA00B3AC33 /* Supporting Files */,
 			);
 			path = DMC_Control;
@@ -219,9 +237,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EED1F0DE1AC845DE00B3AC33 /* fzm-Embossed.Text.ttf in Resources */,
+				EED1F0D71AC8422500B3AC33 /* digital-7 (mono).ttf in Resources */,
+				EED1F0D91AC8422500B3AC33 /* digital-7 (italic).ttf in Resources */,
 				EED1F0A91AC776CA00B3AC33 /* Main.storyboard in Resources */,
 				EED1F0AE1AC776CA00B3AC33 /* LaunchScreen.xib in Resources */,
+				EED1F0DC1AC8440D00B3AC33 /* fzm-Embossed.Label.ttf in Resources */,
 				EED1F0AB1AC776CA00B3AC33 /* Images.xcassets in Resources */,
+				EED1F0DA1AC8422500B3AC33 /* digital-7 (mono italic).ttf in Resources */,
+				EED1F0D81AC8422500B3AC33 /* digital-7.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

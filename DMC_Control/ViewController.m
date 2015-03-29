@@ -19,6 +19,7 @@
 
 @property (nonatomic,strong) RelayrApp *relayerApp;
 @property (nonatomic,strong) RelayrUser *user;
+@property (nonatomic,strong) UIFont *ledFont;
 
 //@property (nonatomic,strong) NSNumber *fluxCapaciterTemp;
 
@@ -37,6 +38,10 @@
             [self connectToRelayr];
         }
     }];
+    
+    NSLog(@"%@",[UIFont familyNames]);
+    
+    self.ledFont = [UIFont fontWithName:@"Digital-7" size:32.0];
 }
 
 -(void)connectToRelayr
@@ -111,6 +116,7 @@
     if ([reading.meaning isEqualToString:@"acceleration"])
     {
         [self loadAccelerationDatafromReading:reading];
+        self.xGeeLabel.font = self.ledFont;
         self.xGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:self.xGforce]];
         self.yGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:self.yGforce]];
         self.zGeeLabel.text = [NSString stringWithFormat:@"%@ G",[numberFormatter stringFromNumber:self.zGforce]];

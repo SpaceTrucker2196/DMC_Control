@@ -1,5 +1,4 @@
 # DMC_Control
-<h1>DMC IOC CONTROL</h1>
 <img src=https://raw.githubusercontent.com/spacecoder/DMC_Control/master/graphics/title.jpg>
 
 DMC IOC stands for Delorean Motor Corp Internet Of Cars. This repository contains the source code for an iOS app that works with the WunderBar from https://relayr.io/wunderbar.

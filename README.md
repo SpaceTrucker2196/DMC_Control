@@ -13,7 +13,7 @@ The dashboard:
 Functions:
 
 <b>Flux</b>
-This is the last read flux capacitor tempature reading.
+This is the last read flux capacitor temperature reading.
 
 <b>G Forces</b>
 The last read readings for gravitational forces in 3 dimensional space. 
